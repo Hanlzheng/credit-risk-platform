@@ -5,6 +5,7 @@
 from flask import Flask # The core web framework
 from flask_jwt_extended import JWTManager # Handles login tokens
 from flask_pymongo import PyMongo # connects to MongoDB
+from flask_cors import CORS
 
 # Creating empty instances of both tools.
 mongo = PyMongo()
@@ -26,6 +27,7 @@ def create_app():
     # Connects MongoDB and JWT to my app
     mongo.init_app(app)
     jwt.init_app(app)
+    CORS(app)
 
     # Impors the two route files
     from app.routes.auth import auth_bp
